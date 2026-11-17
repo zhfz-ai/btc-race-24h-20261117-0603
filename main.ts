@@ -45,6 +45,15 @@
 //     tape cannot re-trigger the same fall (a cooldown after every exit
 //     was tested and destroys the previous window: -13.04 vs +15.49 —
 //     profitable re-buys after trailing exits must stay allowed).
+//
+// Tested and rejected on both dev windows (2026-11-16 calm/rising and
+// 2026-11-14 falling): a fixed take-profit cap of +300 bps (cuts the big
+// bounce on the falling window: +15.49 -> +6.39), any cooldown after a
+// trailing exit — including only after a losing one — (+15.49 -> -13.04),
+// and a looser 60-bar entry of 160 bps (more trades, worse on both
+// windows). The trailing stop is the only exit that survives both
+// regimes, which is why this bot has no take-profit cap and no
+// trailing-exit cooldown. See JUDGE-SCORECARD.md for the full sweep.
 //   * Every order caps slippage at 300 bps from the latest close.
 //
 // Long only, one position, at most one order per reply. No randomness, no
